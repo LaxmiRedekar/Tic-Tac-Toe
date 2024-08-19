@@ -6,6 +6,7 @@ let msg = document.querySelector("#msg");
 
 //track player1 and player2
 let turnO = true;
+let count = 0;
 
 const winPtrn = [
     [0,1,2],
@@ -28,6 +29,7 @@ boxes.forEach ((box) =>{
             box.innerText = "X";
             turnO = true;
         }
+        count++;
         box.disabled = true;
         checkWin();
     });
@@ -45,6 +47,11 @@ const checkWin = () =>{
                 showWinner(pos1);
             }
         }
+        else if (count == 8){
+            msg.innerText = "Match is Draw";
+            msgContainer.classList.remove("hide");
+            count = 0;
+        } 
     }
 }
 
@@ -53,6 +60,7 @@ const showWinner = (winner) =>{
     msg.innerText = `Congratulations, Winner is ${winner}`;
     msgContainer.classList.remove("hide");
     disableBox();
+    count = 0;
 }
 
 //Reset game
